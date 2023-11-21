@@ -16,7 +16,7 @@ if (mysqli_num_rows($result) > 0) {
 
         // Check if the image file exists
         if (file_exists($imagePath)) {
-            $imageTag = "<img src='$imagePath' class='img-thumbnail c-img-thumbnail' alt='Media img'>";
+            $imageTag = "<img src='$imagePath' class='img-thumbnail c-img-thumbnail' style='width: 15rem;' alt='Media img'>";
         } else {
             $imageTag = "<p class='text-danger'>Image not found</p>";
         }
@@ -32,8 +32,9 @@ if (mysqli_num_rows($result) > 0) {
                     <td class='text-capitalize'>$row[title]</td>
                     <td class='text-uppercase'>$row[type]</td>
                     <td class='text-capitalize'>$row[author_first_name] $row[author_last_name]</td>
-                    <td class='text-uppercase'>$row[ISBN]</td>
-                    <td class='text-capitalize'>$row[publisher_name]</td>
+                    <td class='text-capitalize'>
+                    <a href='./publisher.php?publisher_name=$row[publisher_name]'>
+                    $row[publisher_name]</a></td>
                     <td>$availabilityBadge</td>
                     <td><a href='details.php?mediaID=$row[id]' class='btn btn-primary'>Details</a></td>
                     <td><a href='update.php?mediaID=$row[id]' class='btn btn-warning'>Edit</a></td>
@@ -86,7 +87,6 @@ mysqli_close($conn);
                     <th scope='col'>Title</th>
                     <th scope='col'>Type</th>
                     <th scope='col'>Author</th>
-                    <th scope='col'>ISBN</th>
                     <th scope='col'>Publisher</th>
                     <th scope='col'>Availability</th>
                     <th scope='col'>Details</th>

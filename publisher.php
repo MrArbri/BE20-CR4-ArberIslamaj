@@ -6,7 +6,9 @@ error_reporting(E_ALL);
 
 require_once './components/db_connect.php';
 
-$sql = "SELECT `id`, `publisher_name`, `publisher_address` FROM `media_library`";
+$publisherName = isset($_GET['publisher_name']) ? $_GET['publisher_name'] : '';
+
+$sql = "SELECT * FROM `media_library` WHERE `publisher_name` = '$publisherName'";
 $result = mysqli_query($conn, $sql);
 $rows = "";
 
@@ -16,6 +18,7 @@ if (mysqli_num_rows($result) > 0) {
             <tr>
                 <td class='text-capitalize'>$row[publisher_name]</td>
                 <td class='text-capitalize'>$row[publisher_address]</td>
+                <td class='text-capitalize'>$row[title]</td>
                 <td><a href='details.php?mediaID=$row[id]' class='btn btn-primary'>Details</a></td>
                 <td><a href='update.php?mediaID=$row[id]' class='btn btn-warning'>Edit</a></td>
                 <td><a href='delete.php?mediaID=$row[id]' class='btn btn-danger'>Delete</a></td>
@@ -61,6 +64,7 @@ mysqli_close($conn);
                 <tr>
                     <th scope='col'>Publisher</th>
                     <th scope='col'>Publisher address</th>
+                    <th scope='col'>Title</th>
                     <th scope='col'>Details</th>
                     <th scope='col'>Edit</th>
                     <th scope='col'>Delete</th>

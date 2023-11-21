@@ -13,8 +13,8 @@ $row = mysqli_fetch_assoc($result);
 $rows = "<tbody>
                 <tr>
                     <img src='./assets/$row[picture]' 
-                    class='img-thumbnail c-img-thumbnail' 
-                    alt='Media img'>
+                    class='img-thumbnail' 
+                    alt='Media img' style=''>
                 </tr>
                 <tr>
                     <th scope='col'>Type</th>
@@ -42,7 +42,9 @@ $rows = "<tbody>
                 </tr>
                 <tr>
                     <th scope='col'>Publisher</th>
-                    <td class='text-capitalize'>$row[publisher_name]</td>
+                    <td class='text-capitalize'>
+                    <a href='./publisher.php'>
+                    $row[publisher_name]</a></td>
                 </tr>
                 <tr>
                     <th scope='col'>Publisher address</th>
